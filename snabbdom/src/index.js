@@ -1,11 +1,5 @@
 import h from "./mySnabbdom/h"
-
-const vnode1 = h('div', {}, [
-  h('div', {}, 'aa'),
-  h('div', {}, 'bb'),
-  h('div', {}, 'cc')
-])
-console.log(vnode1)
-
-const vnode2 = h('div', {}, h('span', {}, 'heihei'))
-console.log(vnode2)
+import patch from "./mySnabbdom/patch"
+const vnode1 = h('h1', {}, '你好')
+const container = document.getElementById('container')
+patch(container, vnode1)
