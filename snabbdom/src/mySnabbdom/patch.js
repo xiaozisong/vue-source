@@ -13,6 +13,9 @@ export default function (oldVnode, newVnode) {
     // 是同一个根节点，并且key相同，差异化更新
   } else {
     // 不是同一个根节点， 暴力拆除重建
-    createElement(newVnode, oldVnode.elm)
+    let vnode = createElement(newVnode)
+    // if() {
+      oldVnode.elm.parentNode.insertBefore(vnode, oldVnode.elm)
+    // }
   }
 }

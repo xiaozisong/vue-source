@@ -24,16 +24,18 @@ export default function h(sel, data, c) {
       let children = []
       // 遍历c参数
       for(let i = 0; i < c.length; i++) {
-        // 判断c参数每一项的类型的返回值是否为object
+        // 判断c参数每一项的类型的返回值是否为object, 如果是的话，说明c参数是一个数组
         if(typeof c[i] === 'object' && c[i].hasOwnProperty(sel)) {
-          children.push(c[i])
+          // children.push(c[i])
+          // c[i]
         } else {
-          throw new Error('对不起,您输入的参数有误')
+          // return vnode(sel, undefined, undefined, undefined, c)
+          children.push(c[i])
         }
       }
       return vnode(sel, undefined, undefined, children, undefined)
     }
-  } else if (typeof c === 'object' && c[i].hasOwnProperty(sel)) {
+  } else if (typeof c === 'object' && c.hasOwnProperty(sel)) {
     return vnode(sel, undefined, undefined, c, undefined)
   }
 }
