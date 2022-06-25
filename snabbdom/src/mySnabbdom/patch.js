@@ -14,8 +14,12 @@ export default function (oldVnode, newVnode) {
   } else {
     // 不是同一个根节点， 暴力拆除重建
     let vnode = createElement(newVnode)
-    // if() {
+    if(oldVnode.elm.parentNode && vnode) {
+      // 往老节点前面插入新节点
       oldVnode.elm.parentNode.insertBefore(vnode, oldVnode.elm)
-    // }
+    }
+    console.log(oldVnode.elm.parentNode, 'oldVnode.elm.parentNode')
+    // 拆除老节点, 要让oldVnode的父级节点删除oldVnode
+    oldVnode.elm.parentNode.removeChild(oldVnode.elm)
   }
 }

@@ -13,11 +13,16 @@ export default function createElement(vnode) {
   if(Array.isArray(vnode.children) && vnode.children.length > 0) {
     // 递归去实现创建节点
     for(let i = 0; i < vnode.children.length; i++) {
+      // 这里的ch是h函数中第三个参数的每个节点
       let ch = vnode.children[i]
-      let newVnode = createElement(ch)
-      console.log(newVnode, '17')
-      domNode.appendChild(newVnode)
+      // 这里做递归，要拿到上一次的结果做下一次递归的参数
+      let chVnode = createElement(ch)
+      // 在这里插入递归返回的节点
+      domNode.appendChild(chVnode)
     }
+    // 为vnode添加elm属性
+    vnode.elm = domNode
   }
+  // 这里返回domNode和vnode.elm属性是一样的
   return domNode
 }
